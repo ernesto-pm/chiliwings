@@ -1,0 +1,10 @@
+## Interface: 100206
+## Version: 1.0.0
+## Title: Chiliwings
+## Notes: Instalate el chili wings bro
+## Author: Gary Host
+## SavedVariables: ChiliWingsDB
+
+ZoneQuestTracker.lua
+#HelloWorld.lua
+#B.lua
