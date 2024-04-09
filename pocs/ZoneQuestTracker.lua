@@ -6,6 +6,8 @@
 --- https://wowpedia.fandom.com/wiki/UiMapID
 local ZoneQuestTracker = CreateFrame("Frame")
 
+local _, namespace = ...
+
 local function debugZoneAPIs()
     local realZoneText = GetRealZoneText()
     local subZoneText = GetSubZoneText()
@@ -32,7 +34,7 @@ end
 
 local function getPlayerLocationInformation()
     currentPlayerMapID = C_Map.GetBestMapForUnit("player")
-    info = C_Map.GetMapInfo(currentPlayerMapID)
+    info = C_Map.GetMapInfo(currentPlayerMapID) -- https://wowpedia.fandom.com/wiki/API_C_Map.GetMapInfo
 
     print("Current player map ID: " .. currentPlayerMapID)
     print("Name: " .. info.name)
@@ -41,7 +43,7 @@ local function getPlayerLocationInformation()
 end
 
 -- Uses the recursive function to go up until we find a "continent" or something that has no parent
-local function getLocationsUpToContinentForPlayer()
+function getLocationsUpToContinentForPlayer()
     -- Inner recursive function to aggregate locations up to the continent where the player is located
     function recursiveLocationInformation(mapID, infoList)
         info = C_Map.GetMapInfo(mapID)
@@ -64,10 +66,16 @@ end
 
 local function eventHandler(self, event, ...)
     if event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" then
-        nestedLocations = getLocationsUpToContinentForPlayer()
-        for _, location in pairs(nestedLocations) do
-            print(location.name)
+        --nestedLocations = getLocationsUpToContinentForPlayer()
+        --for _, location in pairs(nestedLocations) do
+            --print(location.name)
+        --end
+
+        quests = getAugmentedQuests()
+        for _, quest in pairs(quests) do
+            print(quest.uiMapID)
         end
+
     end
 end
 

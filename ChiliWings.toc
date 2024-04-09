@@ -5,6 +5,12 @@
 ## Author: Gary Host
 ## SavedVariables: ChiliWingsDB
 
-ZoneQuestTracker.lua
+LocationInfo_API.lua
+Quests_API.lua
+QuestsPerZone.lua
+
+
+#Quests.lua
+#ZoneQuestTracker.lua
 #HelloWorld.lua
 #B.lua

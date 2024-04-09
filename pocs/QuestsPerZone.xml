@@ -1,0 +1,19 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+    <Frame name="QuestsPerZone" movable="true" enableMouse="true" resizable="false">
+        <Scripts>
+            <OnLoad>
+                self:RegisterEvent("ADDON_LOADED");
+            </OnLoad>
+            <OnEvent>
+                if (event == "ADDON_LOADED") then
+                    QuestsPerZone_OnLoad(self);
+                end
+            </OnEvent>
+        </Scripts>
+    </Frame>
+
+    <Button name="QuestsPerZoneItemRowTemplate" virtual="true">
+        <Size x="200" y="200"/>
+        <!-- You can add more elements here like Texture for icons -->
+    </Button>
+</Ui>

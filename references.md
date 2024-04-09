@@ -29,3 +29,10 @@ UI MAP IDs:
 
 https://wowpedia.fandom.com/wiki/UiMapID
 
+
+https://www.wowace.com/projects/ace3/pages/getting-started
+
+
+Full list of events:
+
+https://wowwiki-archive.fandom.com/wiki/Events_A-Z_(full_list)
