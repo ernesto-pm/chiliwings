@@ -1,3 +1,9 @@
+--- API LINKS:
+--- https://wowpedia.fandom.com/wiki/API_C_Map.GetBestMapForUnit
+--- https://wowpedia.fandom.com/wiki/API_C_Map.GetMapInfo
+--- https://wowpedia.fandom.com/wiki/API_C_QuestLog.GetInfo
+--- https://wowpedia.fandom.com/wiki/API_C_QuestLog.GetQuestAdditionalHighlights
+--- https://wowpedia.fandom.com/wiki/UiMapID
 local ZoneQuestTracker = CreateFrame("Frame")
 
 local function debugZoneAPIs()
@@ -34,34 +40,34 @@ local function getPlayerLocationInformation()
     print("Parent: " .. info.parentMapID)
 end
 
--- recursive function to go up until we find the "continent" level
-local function recursiveLocationInformation(mapID, infoList)
-    info = C_Map.GetMapInfo(mapID)
-
-    -- if no parent or if we reach the "continent" enum
-    if info.parentMapID == 0 or info.mapType == 2 then
-        return
-    end
-
-    table.insert(infoList, info) -- append to the list
-    recursiveLocationInformation(info.parentMapID, infoList) -- recursively call to append information about this map
-end
-
 -- Uses the recursive function to go up until we find a "continent" or something that has no parent
 local function getLocationsUpToContinentForPlayer()
+    -- Inner recursive function to aggregate locations up to the continent where the player is located
+    function recursiveLocationInformation(mapID, infoList)
+        info = C_Map.GetMapInfo(mapID)
+
+        -- if no parent or if we reach the "continent" enum
+        if info.parentMapID == 0 or info.mapType == 2 then
+            return
+        end
+
+        table.insert(infoList, info) -- append to the list
+        recursiveLocationInformation(info.parentMapID, infoList) -- recursively call to append information about this map
+    end
+
     currentPlayerMapID = C_Map.GetBestMapForUnit("player")
     mapInfo = {}
-
     recursiveLocationInformation(currentPlayerMapID, mapInfo)
 
-    for _, info in pairs(mapInfo) do
-        print(info.name)
-    end
+    return mapInfo
 end
 
 local function eventHandler(self, event, ...)
     if event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" then
-        getLocationsUpToContinentForPlayer()
+        nestedLocations = getLocationsUpToContinentForPlayer()
+        for _, location in pairs(nestedLocations) do
+            print(location.name)
+        end
     end
 end
 
