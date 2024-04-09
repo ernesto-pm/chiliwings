@@ -6,17 +6,19 @@ local function eventHandler(self, event, ...)
         local subZoneText = GetSubZoneText()
         local zoneText = GetZoneText()
 
+        print("Current player map ID: " .. C_Map.GetBestMapForUnit("player"))
         print("Real Zone name: " .. realZoneText .. "") -- i.e Thaldrazus
-        print("Sub zone name" .. subZoneText .. "") -- i.e The petitioner's course
-        print("Zone name" .. zoneText .. "") -- i.e thaldrazus
+        print("Sub zone name: " .. subZoneText .. "") -- i.e The petitioner's course
+        print("Zone name: " .. zoneText .. "") -- i.e thaldrazus
 
         for i = 1, C_QuestLog.GetNumQuestLogEntries() do
             local info = C_QuestLog.GetInfo(i)
 
-            if info.isHeader then
-                if not info.isCollapsed then
-                    print(info.title) -- Prints the title of the quest
-                end
+            if not info.isHeader then
+                print(info.title) -- Prints the title of the quest
+
+                uiMapID, worldQuests, worldQuestsElite, dungeons, treasures = C_QuestLog.GetQuestAdditionalHighlights(info.questID)
+                print("     " .. uiMapID)
             end
         end
     end
