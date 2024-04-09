@@ -24,3 +24,8 @@ Bugsack (debugging)
 
 https://www.curseforge.com/wow/addons/bugsack
 
+
+UI MAP IDs:
+
+https://wowpedia.fandom.com/wiki/UiMapID
+
