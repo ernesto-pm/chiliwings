@@ -2,13 +2,21 @@ local ZoneQuestTracker = CreateFrame("Frame")
 
 local function eventHandler(self, event, ...)
     if event == "PLAYER_ENTERING_WORLD" or event == "ZONE_CHANGED_NEW_AREA" then
-        local zoneName = GetRealZoneText()
-        print("Active Quests in " .. zoneName .. ":")
+        local realZoneText = GetRealZoneText()
+        local subZoneText = GetSubZoneText()
+        local zoneText = GetZoneText()
+
+        print("Real Zone name: " .. realZoneText .. "") -- i.e Thaldrazus
+        print("Sub zone name" .. subZoneText .. "") -- i.e The petitioner's course
+        print("Zone name" .. zoneText .. "") -- i.e thaldrazus
+
         for i = 1, C_QuestLog.GetNumQuestLogEntries() do
             local info = C_QuestLog.GetInfo(i)
 
-            if not info.isHeader then
-                print(info.title) -- Prints the title of the quest
+            if info.isHeader then
+                if not info.isCollapsed then
+                    print(info.title) -- Prints the title of the quest
+                end
             end
         end
     end
