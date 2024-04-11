@@ -4,13 +4,8 @@
 ## Notes: Instalate el chili wings bro
 ## Author: Gary Host
 ## SavedVariables: ChiliWingsDB
+## OptionalDeps: Ace3
 
-LocationInfo_API.lua
-Quests_API.lua
-QuestsPerZone.lua
+embeds.xml
 
-
-#Quests.lua
-#ZoneQuestTracker.lua
-#HelloWorld.lua
-#B.lua
+Core.lua

@@ -36,3 +36,20 @@ https://www.wowace.com/projects/ace3/pages/getting-started
 Full list of events:
 
 https://wowwiki-archive.fandom.com/wiki/Events_A-Z_(full_list)
+
+
+BEST guide to setup intellij ides:
+
+https://github.com/Ellypse/IntelliJ-IDEA-Lua-IDE-WoW-API/wiki
+
+Misc comments:
+
+https://www.reddit.com/r/wowaddons/comments/8kkjrr/thoughts_from_a_new_addon_developer/
+
+Ace 3 for dummies:
+
+https://wowpedia.fandom.com/wiki/Ace3_for_Dummies
+
+Ace 3 getting started:
+
+https://www.wowace.com/projects/ace3/pages/getting-started
